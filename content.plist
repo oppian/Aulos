@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>twitter_id</key>
+	<string>raseuk</string>
+	<key>itunes_url</key>
+	<string>http://itunes.apple.com/gb/artist/rase/id252050129</string>
+	<key>music</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Nothing To Lose EP</string>
+			<key>caption</key>
+			<string>28 September 2009</string>
+			<key>copyright</key>
+			<string>℗ 2009 Rase Music Ltd</string>
+			<key>itunes_url</key>
+			<string>http://itunes.apple.com/gb/album/outside-looking-in/id332545543?i=332545553&amp;uo=6</string>
+			<key>cover_img</key>
+			<string>nothing_to_lose_ep.jpg</string>
+			<key>tracks</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>Nothing To Lose</string>
+					<key>itunes_url</key>
+					<string>http://itunes.apple.com/gb/album/nothing-to-lose/id332545543?i=332545547&amp;uo=6</string>
+					<key>sample</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>No Excuses</string>
+					<key>itunes_url</key>
+					<string>http://itunes.apple.com/gb/album/no-excuses/id332545543?i=332545551&amp;uo=6</string>
+					<key>sample</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Kaleidoscope</string>
+					<key>itunes_url</key>
+					<string>http://itunes.apple.com/gb/album/kaleidoscope/id332545543?i=332545552&amp;uo=6</string>
+					<key>sample</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Outside Looking In</string>
+					<key>itunes_url</key>
+					<string>http://itunes.apple.com/gb/album/outside-looking-in/id332545543?i=332545553&amp;uo=6</string>
+					<key>sample</key>
+					<string></string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Rase EP</string>
+			<key>caption</key>
+			<string>6 August 2008</string>
+			<key>copyright</key>
+			<string>℗ 2008 Great Britmusic</string>
+			<key>itunes_url</key>
+			<string>http://itunes.apple.com/gb/album/rase/id288622096</string>
+			<key>cover_img</key>
+			<string>rase_ep.jpg</string>
+			<key>tracks</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>Untouchable</string>
+					<key>itunes_url</key>
+					<string>http://itunes.apple.com/gb/album/untouchable/id288622096?i=288622143&amp;uo=6</string>
+					<key>sample</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Fingers Burned</string>
+					<key>itunes_url</key>
+					<string>http://itunes.apple.com/gb/album/fingers-burned/id288622096?i=288622157&amp;uo=6</string>
+					<key>sample</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Exist</string>
+					<key>itunes_url</key>
+					<string>http://itunes.apple.com/gb/album/exist/id288622096?i=288622200&amp;uo=6</string>
+					<key>sample</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>Find My Way</string>
+					<key>itunes_url</key>
+					<string>http://itunes.apple.com/gb/album/find-my-way/id288622096?i=288622211&amp;uo=6</string>
+					<key>sample</key>
+					<string></string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>videos</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Nothing To Lose</string>
+			<key>url</key>
+			<string>http://www.youtube.com/watch?v=4-GPmQCC1mE</string>
+			<key>template</key>
+			<string>std_video.html</string>
+			<key>caption</key>
+			<string>Nothing To Lose - (c) Rase 2009</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Rase @ Marrs Bar</string>
+			<key>url</key>
+			<string>http://www.youtube.com/watch?v=C-smTD5BGXk</string>
+			<key>caption</key>
+			<string>Rase @ Marrs Bar Worcester 04/11/2007</string>
+		</dict>
+	</array>
+</dict>
+</plist>
