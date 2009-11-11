@@ -9,6 +9,8 @@
 #import "MusicListViewController.h"
 #import "MusicAlbumViewController.h"
 
+#define kCellHeight 68.5
+
 @interface MusicListViewController()
 - (void) loadAlbumViewController:(NSUInteger)index animated:(BOOL)animated;
 @end
@@ -186,7 +188,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 68.5;
+	return kCellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 

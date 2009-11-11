@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1878BEFB10AA2EB100823002 /* VideoListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878BEFA10AA2EB100823002 /* VideoListTableViewCell.m */; };
+		1878BFD310AA457500823002 /* defaut_video_cell_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 1878BFD210AA457500823002 /* defaut_video_cell_image.png */; };
 		1879D50E10A8B956008EE151 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1879D50D10A8B956008EE151 /* Entitlements.plist */; };
 		1879D53B10A8BBC0008EE151 /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1879D53A10A8BBC0008EE151 /* app-icon.png */; };
 		1879D63510A99451008EE151 /* TwitterWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1879D63310A99451008EE151 /* TwitterWebViewController.m */; };
@@ -44,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1878BEF910AA2EB100823002 /* VideoListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListTableViewCell.h; sourceTree = "<group>"; };
+		1878BEFA10AA2EB100823002 /* VideoListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListTableViewCell.m; sourceTree = "<group>"; };
+		1878BFD210AA457500823002 /* defaut_video_cell_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = defaut_video_cell_image.png; path = icons/defaut_video_cell_image.png; sourceTree = "<group>"; };
 		1879D50D10A8B956008EE151 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		1879D53A10A8BBC0008EE151 /* app-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon.png"; sourceTree = "<group>"; };
 		1879D63210A99451008EE151 /* TwitterWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterWebViewController.h; sourceTree = "<group>"; };
@@ -121,6 +126,8 @@
 				189514CF10A9CC67005142D0 /* MusicAlbumViewController.m */,
 				18F468E510A887FC004420F7 /* VideoListViewController.h */,
 				18F468E610A887FC004420F7 /* VideoListViewController.m */,
+				1878BEF910AA2EB100823002 /* VideoListTableViewCell.h */,
+				1878BEFA10AA2EB100823002 /* VideoListTableViewCell.m */,
 				18F4692E10A88FEE004420F7 /* WebVideoViewController.h */,
 				18F4692F10A88FEE004420F7 /* WebVideoViewController.m */,
 				18F4677510A86E5C004420F7 /* PhotosViewController.h */,
@@ -134,6 +141,7 @@
 		18F467C210A87371004420F7 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				1878BFD210AA457500823002 /* defaut_video_cell_image.png */,
 				18F467B610A87352004420F7 /* home.png */,
 				18F467B710A87352004420F7 /* music.png */,
 				18F467B810A87352004420F7 /* news.png */,
@@ -270,6 +278,7 @@
 				189514D210A9CC67005142D0 /* MusicAlbumViewController.xib in Resources */,
 				189515F510A9EFE5005142D0 /* HomeViewController.xib in Resources */,
 				1895165310A9FB70005142D0 /* Default.png in Resources */,
+				1878BFD310AA457500823002 /* defaut_video_cell_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +299,7 @@
 				1879D76410A9C583008EE151 /* MusicListViewController.m in Sources */,
 				189514D110A9CC67005142D0 /* MusicAlbumViewController.m in Sources */,
 				189515F410A9EFE5005142D0 /* HomeViewController.m in Sources */,
+				1878BEFB10AA2EB100823002 /* VideoListTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

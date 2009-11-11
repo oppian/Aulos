@@ -8,6 +8,9 @@
 
 #import "VideoListViewController.h"
 #import "WebVideoViewController.h"
+#import "VideoListTableViewCell.h"
+
+#define kCellHeight 68.5
 
 @interface VideoListViewController()
 - (void) findAndLoadVideos;
@@ -63,7 +66,6 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	self.title = @"Videos";
 	[self findAndLoadVideos];
 }
 
@@ -135,14 +137,16 @@
     
     static NSString *CellIdentifier = @"VideoCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    VideoListTableViewCell *cell = (VideoListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[VideoListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	NSUInteger row = [indexPath row];
 	NSDictionary* params = [videos objectAtIndex:row];
 	cell.textLabel.text = [params objectForKey:@"title"];
+	cell.imageView.image = [UIImage imageNamed:@"defaut_video_cell_image.png"];
+	[cell loadIconForVideoWithUrl:[params objectForKey:@"url"]];
 	
     return cell;
 }
@@ -188,6 +192,11 @@
  */
 
 #pragma mark UITableViewDelegate view methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return kCellHeight;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

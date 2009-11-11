@@ -9,6 +9,7 @@
 #import "MusicAlbumViewController.h"
 
 #define kMinCellHeight	30
+#define kMaxCellHeight	105
 
 @implementation MusicAlbumViewController
 
@@ -151,6 +152,8 @@
 	CGFloat height = tableView.frame.size.height / [tracks count];
 	if (height < kMinCellHeight)
 		height = kMinCellHeight;
+	if (height > kMaxCellHeight)
+		height = kMaxCellHeight;
 	return height;
 }
 

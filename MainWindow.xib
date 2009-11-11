@@ -147,7 +147,7 @@
 									<bool key="EncodedWithXMLCoder">YES</bool>
 								</object>
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="654389532">
-									<string key="IBUITitle">Item</string>
+									<string key="IBUITitle">Videos</string>
 								</object>
 								<reference key="IBUIParentViewController" ref="307916971"/>
 								<string key="IBUINibName">VideoListViewController</string>
