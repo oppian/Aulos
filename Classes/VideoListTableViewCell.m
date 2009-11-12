@@ -20,6 +20,8 @@
 @synthesize urlConnection;
 @synthesize imgData;
 
+static NSUInteger thumbRequestCount = 0;
+
 /** Obtain a better icon if possible based on the video URL
  */
 - (void) loadIconForVideoWithUrl:(NSString*)url
@@ -45,7 +47,8 @@
 			NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:youTubeThumbnailUrl]];
 			self.urlConnection = [NSURLConnection connectionWithRequest:request delegate:self];
 			[urlConnection start];
-			
+			if (++thumbRequestCount == 1)
+				[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 		}
 	}
 }
@@ -99,11 +102,15 @@
 	{
 		self.imageView.image = image;
 	}
+	if (--thumbRequestCount == 0)
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
 	self.imgData = nil;
+	if (--thumbRequestCount == 0)
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 

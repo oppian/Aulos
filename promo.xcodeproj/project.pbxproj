@@ -18,6 +18,7 @@
 		1879D73D10A9C0A9008EE151 /* music in Resources */ = {isa = PBXBuildFile; fileRef = 1879D73B10A9C0A9008EE151 /* music */; };
 		1879D76410A9C583008EE151 /* MusicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1879D76210A9C583008EE151 /* MusicListViewController.m */; };
 		1879D76510A9C583008EE151 /* MusicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1879D76310A9C583008EE151 /* MusicListViewController.xib */; };
+		18846C3610AB11CE00474360 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 18846C3510AB11CE00474360 /* save.png */; };
 		189514D110A9CC67005142D0 /* MusicAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189514CF10A9CC67005142D0 /* MusicAlbumViewController.m */; };
 		189514D210A9CC67005142D0 /* MusicAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189514D010A9CC67005142D0 /* MusicAlbumViewController.xib */; };
 		189515F410A9EFE5005142D0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189515F210A9EFE5005142D0 /* HomeViewController.m */; };
@@ -60,6 +61,7 @@
 		1879D76110A9C583008EE151 /* MusicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicListViewController.h; sourceTree = "<group>"; };
 		1879D76210A9C583008EE151 /* MusicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicListViewController.m; sourceTree = "<group>"; };
 		1879D76310A9C583008EE151 /* MusicListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicListViewController.xib; sourceTree = "<group>"; };
+		18846C3510AB11CE00474360 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = save.png; path = icons/save.png; sourceTree = "<group>"; };
 		189514CE10A9CC67005142D0 /* MusicAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicAlbumViewController.h; sourceTree = "<group>"; };
 		189514CF10A9CC67005142D0 /* MusicAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicAlbumViewController.m; sourceTree = "<group>"; };
 		189514D010A9CC67005142D0 /* MusicAlbumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicAlbumViewController.xib; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				1878BFD210AA457500823002 /* defaut_video_cell_image.png */,
+				18846C3510AB11CE00474360 /* save.png */,
 				18F467B610A87352004420F7 /* home.png */,
 				18F467B710A87352004420F7 /* music.png */,
 				18F467B810A87352004420F7 /* news.png */,
@@ -279,6 +282,7 @@
 				189515F510A9EFE5005142D0 /* HomeViewController.xib in Resources */,
 				1895165310A9FB70005142D0 /* Default.png in Resources */,
 				1878BFD310AA457500823002 /* defaut_video_cell_image.png in Resources */,
+				18846C3610AB11CE00474360 /* save.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +310,36 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		1879A96710AC56FF007BAC3C /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1;
+			};
+			name = Distribution;
+		};
+		1879A96810AC56FF007BAC3C /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Oppian Systems Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Oppian Systems Ltd";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = promo_Prefix.pch;
+				INFOPLIST_FILE = "promo-Info.plist";
+				PRODUCT_NAME = promo;
+				PROVISIONING_PROFILE = "ADC68293-3D6C-4CDE-BB26-FCD59C4B4DAC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ADC68293-3D6C-4CDE-BB26-FCD59C4B4DAC";
+			};
+			name = Distribution;
+		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -369,6 +403,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				1879A96810AC56FF007BAC3C /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -378,6 +413,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				1879A96710AC56FF007BAC3C /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

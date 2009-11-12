@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface PhotosViewController : UIViewController <UIScrollViewDelegate>
+@interface PhotosViewController : UIViewController <UIScrollViewDelegate, UIAlertViewDelegate>
 {
 	IBOutlet UIScrollView*	scrollView;
 	NSUInteger currentImage;
@@ -17,5 +17,7 @@
 }
 
 @property(nonatomic, retain) UIScrollView* scrollView;
+
+- (IBAction) onSaveButtonPressed:(id)sender;
 
 @end

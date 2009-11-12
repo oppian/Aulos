@@ -14,11 +14,33 @@
 @interface PhotosViewController()
 - (void) findAndLoadPhotos;
 - (void) layoutScrollImages;
+- (void) saveToPhotos;
+- (void) doSavePhotoThreadFunc:(UIImage*)image;
 @end
 
 @implementation PhotosViewController
 
 @synthesize scrollView;
+
+- (IBAction) onSaveButtonPressed:(id)sender
+{
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Save to photo library?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+	[alert show];
+	[alert release];
+}
+
+- (void) saveToPhotos
+{
+	UIImageView* imgView = (UIImageView*)[scrollView viewWithTag:currentImage + 1];
+	[self performSelectorInBackground:@selector(doSavePhotoThreadFunc:) withObject:imgView.image];
+}
+
+- (void) doSavePhotoThreadFunc:(UIImage*)image
+{
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+	[pool drain];
+}
 
 - (void) findAndLoadPhotos
 {
@@ -121,6 +143,17 @@
 {
 	CGFloat offset = theScrollView.contentOffset.x;
 	currentImage = floor(offset / scrollView.frame.size.width);
+}
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex != alertView.cancelButtonIndex)
+	{
+		[self saveToPhotos];
+	}
 }
 
 @end
