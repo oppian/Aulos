@@ -50,9 +50,9 @@
 	for (NSUInteger i = 0; i < numImages; i++)
 	{
 		NSString* fn = [imageFilenames objectAtIndex:i];
-		UIImage* image = [UIImage imageWithContentsOfFile:fn];
-		UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-		imageView.frame = scrollView.frame;
+		CGRect frame = scrollView.frame;
+		frame.size.height = 480;
+		UIImageView *imageView = [[UIImageView alloc] initWithBackgroundLoadWithContentsOfFile:fn frame:frame activityIndicator:YES];
 		// setup each frame to a default height and width, it will be properly placed when we call "updateScrollList"
 		imageView.tag = i + 1;	// tag our images for later use when we place them in serial fashion
 		[scrollView addSubview:imageView];

@@ -8,6 +8,8 @@
 
 #import "Categories.h"
 
+#define kActivityIndicatorViewTag 666
+
 @implementation UIImage (Extras)
 
 - (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize {
@@ -71,4 +73,44 @@
 	return newImage ;
 }
 
+@end
+
+@implementation UIImageView (BackgroundOperations)
+
+- (id) initWithBackgroundLoadWithContentsOfFile:(NSString*)imagePath frame:(CGRect)frame activityIndicator:(BOOL)activityIndicator
+{
+	if (self = [self initWithFrame:frame])
+	{
+		if (activityIndicator)
+		{
+			UIActivityIndicatorView* aiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+			aiv.center = self.center;
+			aiv.tag = kActivityIndicatorViewTag;
+			[self addSubview:aiv]; // retains
+			[aiv startAnimating];
+			[aiv release];
+		}
+		[self performSelectorInBackground:@selector(loadImageInBg:) withObject:imagePath];
+	}
+	return self;
+}
+
+- (void) loadImageInBg:(NSString*)imagePath
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
+	[self performSelectorOnMainThread:@selector(onLoadImageFromBg:) withObject:image waitUntilDone:YES];
+	[pool drain];
+}
+
+- (void) onLoadImageFromBg:(UIImage*)image
+{
+	self.image = image;
+	// if there was an activity indicator used, remove it
+	UIView* aiv = [self viewWithTag:kActivityIndicatorViewTag];
+	if (aiv)
+		[aiv removeFromSuperview]; // also releases
+}
+
+	
 @end

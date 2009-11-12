@@ -11,3 +11,7 @@
 @interface UIImage (Extras)
 - (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
 @end;
+
+@interface UIImageView (BackgroundOperations)
+- (id) initWithBackgroundLoadWithContentsOfFile:(NSString*)imagePath frame:(CGRect)frame activityIndicator:(BOOL)activityIndicator;
+@end
