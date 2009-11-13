@@ -12,11 +12,13 @@
 @interface PhotosViewController : UIViewController <UIScrollViewDelegate, UIAlertViewDelegate>
 {
 	IBOutlet UIScrollView*	scrollView;
+	IBOutlet UIPageControl* pageControl;
 	NSUInteger currentImage;
 	NSUInteger numImages;
 }
 
 @property(nonatomic, retain) UIScrollView* scrollView;
+@property(nonatomic, retain) UIPageControl* pageControl;
 
 - (IBAction) onSaveButtonPressed:(id)sender;
 

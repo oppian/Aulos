@@ -21,6 +21,7 @@
 @implementation PhotosViewController
 
 @synthesize scrollView;
+@synthesize pageControl;
 
 - (IBAction) onSaveButtonPressed:(id)sender
 {
@@ -51,13 +52,14 @@
 	{
 		NSString* fn = [imageFilenames objectAtIndex:i];
 		CGRect frame = scrollView.frame;
-		frame.size.height = 480;
+//		frame.size.height = 480;
 		UIImageView *imageView = [[UIImageView alloc] initWithBackgroundLoadWithContentsOfFile:fn frame:frame activityIndicator:YES];
 		// setup each frame to a default height and width, it will be properly placed when we call "updateScrollList"
 		imageView.tag = i + 1;	// tag our images for later use when we place them in serial fashion
 		[scrollView addSubview:imageView];
 		[imageView release];
 	}
+	pageControl.numberOfPages = numImages;
 }
 
 - (void) layoutScrollImages
@@ -133,6 +135,7 @@
 - (void)dealloc 
 {
 	[scrollView release];
+	[pageControl release];
     [super dealloc];
 }
 
@@ -143,6 +146,7 @@
 {
 	CGFloat offset = theScrollView.contentOffset.x;
 	currentImage = floor(offset / scrollView.frame.size.width);
+	pageControl.currentPage = currentImage;
 }
 
 #pragma mark -
