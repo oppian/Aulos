@@ -12,6 +12,7 @@
 @interface TwitterWebViewController : UIViewController <UIWebViewDelegate>
 {
 	IBOutlet UIWebView*	webView;
+	NSUInteger	htmlCacheHash;
 }
 
 @property(nonatomic, retain) UIWebView* webView;

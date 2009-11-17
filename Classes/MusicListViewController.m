@@ -8,6 +8,7 @@
 
 #import "MusicListViewController.h"
 #import "MusicAlbumViewController.h"
+#import "promoAppDelegate.h"
 
 #define kCellHeight 68.5
 
@@ -45,8 +46,7 @@
 - (void)viewDidLoad 
 {
 	// Load the main content plist
-	NSString* path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"plist"];
-	NSDictionary* content = [NSDictionary dictionaryWithContentsOfFile:path];
+	NSDictionary* content = ((promoAppDelegate*)[UIApplication sharedApplication].delegate).contentDict;
 	// grab the music section - an array of album dictionaries
 	self.albums = [content objectForKey:@"music"];
     [super viewDidLoad];

@@ -13,10 +13,14 @@
 
 @synthesize window;
 @synthesize tabBarController;
+@synthesize contentDict;
 
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
-    
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+    // Load up the content description data
+	NSString* path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"plist"];
+	self.contentDict = [NSDictionary dictionaryWithContentsOfFile:path];
     // Add the tab bar controller's current view as a subview of the window
 	tabBarController.delegate = self;
     [window addSubview:tabBarController.view];
@@ -39,6 +43,7 @@
 - (void)dealloc {
     [tabBarController release];
     [window release];
+	[contentDict release];
     [super dealloc];
 }
 

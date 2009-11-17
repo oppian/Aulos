@@ -7,31 +7,78 @@
 //
 
 #import "TwitterWebViewController.h"
+#import "promoAppDelegate.h"
 
+#define kCachedHtmlFilename @"twitter_cache.html"
+
+@interface TwitterWebViewController()
+- (void) loadHTMLStringInBackground:(NSString*)strUrl;
+- (NSString*) cachedHTMLPath;
+@end
 
 @implementation TwitterWebViewController
 
 @synthesize webView;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
+- (NSString*) cachedHTMLPath
+{
+	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString* docsDir = [paths objectAtIndex:0];
+	return [docsDir stringByAppendingPathComponent:kCachedHtmlFilename];
 }
-*/
 
+- (void) loadHTMLStringInBackground:(NSString*)strUrl
+{
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	[self performSelectorInBackground:@selector(loadHTMLStringThreadFunc:) withObject:strUrl];
+}
+
+- (void) loadHTMLStringThreadFunc:(NSString*) strUrl
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	NSURL* url = [NSURL URLWithString:strUrl];
+	NSString* html = [NSString stringWithContentsOfURL:url];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	[self performSelectorOnMainThread:@selector(onLoadHTMLString:) withObject:html waitUntilDone:YES];
+	[pool drain];
+}
+
+- (void) onLoadHTMLString:(NSString*)html
+{
+	if (html && [html hash] != htmlCacheHash)
+	{
+		// write to cache
+		[html writeToFile:[self cachedHTMLPath] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+		htmlCacheHash = [html hash];
+		// load up in web view
+		NSDictionary* contentDict = ((promoAppDelegate*)[UIApplication sharedApplication].delegate).contentDict;
+		NSString* twitterId = [contentDict objectForKey:@"twitter_id"];
+		NSString* strUrl = [NSString stringWithFormat:@"http://m.twitter.com/%@", twitterId];
+		[webView loadHTMLString:html baseURL:[NSURL URLWithString:strUrl]];
+	}
+	else if (!html)
+	{
+		// TODO: error handling
+	}
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
-	NSString* path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"plist"];
-	NSDictionary* contentDict = [NSDictionary dictionaryWithContentsOfFile:path];
+	NSDictionary* contentDict = ((promoAppDelegate*)[UIApplication sharedApplication].delegate).contentDict;
 	NSString* twitterId = [contentDict objectForKey:@"twitter_id"];
-	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", twitterId]];
-	[webView loadRequest:[NSURLRequest requestWithURL:url]];
+	NSString* strUrl = [NSString stringWithFormat:@"http://m.twitter.com/%@", twitterId];
+	// Load cached file into web view if it exists
+	NSString* cachedFilePath = [self cachedHTMLPath];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFilePath])
+	{
+		NSString* html = [NSString stringWithContentsOfFile:cachedFilePath];
+		htmlCacheHash = [html hash];
+		[webView loadHTMLString:html baseURL:[NSURL URLWithString:strUrl]];
+	}
+	else
+		htmlCacheHash = 0;
+	[self loadHTMLStringInBackground:strUrl];
     [super viewDidLoad];
 }
 
@@ -90,8 +137,10 @@
 {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 @end

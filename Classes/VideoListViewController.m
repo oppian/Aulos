@@ -9,6 +9,7 @@
 #import "VideoListViewController.h"
 #import "WebVideoViewController.h"
 #import "VideoListTableViewCell.h"
+#import "promoAppDelegate.h"
 
 #define kCellHeight 68.5
 
@@ -24,8 +25,7 @@
 - (void) findAndLoadVideos
 {
 	// Load the main content plist
-	NSString* path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"plist"];
-	NSDictionary* content = [NSDictionary dictionaryWithContentsOfFile:path];
+	NSDictionary* content = ((promoAppDelegate*)[UIApplication sharedApplication].delegate).contentDict;
 	// grab the videos section
 	self.videos = [content objectForKey:@"videos"];
 }
