@@ -7,6 +7,7 @@
 //
 
 #import "MusicAlbumViewController.h"
+#import "Categories.h"
 
 #define kMinCellHeight	30
 #define kMaxCellHeight	105
@@ -145,6 +146,21 @@
 
 
 #pragma mark UITableViewDelegate view methods
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	cell.opaque = NO;
+	UIView* backgroundView = [ [ [ UIView alloc ] initWithFrame:CGRectZero ] autorelease ];
+	if ([indexPath row] % 2 == 0)
+		backgroundView.backgroundColor = [ UIColor lighterLightGrayColor ];
+	else
+		backgroundView.backgroundColor = [ UIColor veryLightGrayColor ];
+	cell.backgroundView = backgroundView;
+	for ( UIView* view in cell.contentView.subviews ) 
+	{
+		view.backgroundColor = [ UIColor clearColor ];
+	}
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

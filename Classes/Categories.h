@@ -15,3 +15,8 @@
 @interface UIImageView (BackgroundOperations)
 - (id) initWithBackgroundLoadWithContentsOfFile:(NSString*)imagePath frame:(CGRect)frame activityIndicator:(BOOL)activityIndicator;
 @end
+
+@interface UIColor (ExtendedColors)
++ (UIColor*) lighterLightGrayColor;
++ (UIColor*) veryLightGrayColor;
+@end
