@@ -58,7 +58,22 @@
 	}
 	else if (!html)
 	{
-		// TODO: error handling
+		// Twitter feed failed to load
+		NSString* title = @"Error";
+		NSString* msg = nil;
+		if ([[NSFileManager defaultManager] fileExistsAtPath:[self cachedHTMLPath]])
+		{
+			// a cached version was loaded from disk
+			msg = @"Unable to load live news feed. Content may be out of date. Connect to a network to see up to date news";
+		}
+		else
+		{
+			// no local cache available
+			msg = @"Unable to load live news feed. Connect to a network to see news";
+		}
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
 	}
 }
 
@@ -106,7 +121,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 }
-
 
 - (void)dealloc
 {
