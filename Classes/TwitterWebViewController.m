@@ -14,17 +14,31 @@
 @interface TwitterWebViewController()
 - (void) loadHTMLStringInBackground:(NSString*)strUrl;
 - (NSString*) cachedHTMLPath;
+- (NSString*) webViewNewsUrl;
 @end
 
 @implementation TwitterWebViewController
 
 @synthesize webView;
 
+- (IBAction) onRefreshButtonPressed:(id)sender
+{
+	[self loadHTMLStringInBackground:[self webViewNewsUrl]];
+}
+
 - (NSString*) cachedHTMLPath
 {
 	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString* docsDir = [paths objectAtIndex:0];
 	return [docsDir stringByAppendingPathComponent:kCachedHtmlFilename];
+}
+
+- (NSString*) webViewNewsUrl
+{
+	NSDictionary* contentDict = ((promoAppDelegate*)[UIApplication sharedApplication].delegate).contentDict;
+	NSString* twitterId = [contentDict objectForKey:@"twitter_id"];
+	NSString* strUrl = [NSString stringWithFormat:@"http://m.twitter.com/%@", twitterId];
+	return strUrl;
 }
 
 - (void) loadHTMLStringInBackground:(NSString*)strUrl
@@ -51,9 +65,7 @@
 		[html writeToFile:[self cachedHTMLPath] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		htmlCacheHash = [html hash];
 		// load up in web view
-		NSDictionary* contentDict = ((promoAppDelegate*)[UIApplication sharedApplication].delegate).contentDict;
-		NSString* twitterId = [contentDict objectForKey:@"twitter_id"];
-		NSString* strUrl = [NSString stringWithFormat:@"http://m.twitter.com/%@", twitterId];
+		NSString* strUrl = [self webViewNewsUrl];
 		[webView loadHTMLString:html baseURL:[NSURL URLWithString:strUrl]];
 	}
 	else if (!html)
@@ -80,9 +92,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
-	NSDictionary* contentDict = ((promoAppDelegate*)[UIApplication sharedApplication].delegate).contentDict;
-	NSString* twitterId = [contentDict objectForKey:@"twitter_id"];
-	NSString* strUrl = [NSString stringWithFormat:@"http://m.twitter.com/%@", twitterId];
+	NSString* strUrl = [self webViewNewsUrl];
 	// Load cached file into web view if it exists
 	NSString* cachedFilePath = [self cachedHTMLPath];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFilePath])

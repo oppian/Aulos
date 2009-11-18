@@ -17,4 +17,6 @@
 
 @property(nonatomic, retain) UIWebView* webView;
 
+- (IBAction) onRefreshButtonPressed:(id)sender;
+
 @end
